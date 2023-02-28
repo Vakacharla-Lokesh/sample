@@ -1,15 +1,28 @@
 #include<stdio.h>
 
-int main()
+void main()
 {
-    cls();
-    printf("Welcome to my first program \n");
-    getch();
-    cls();
-    printf("My Name is Lokesh \n");
-    getch();
-    int clrscr();
-    printf("I am in class 12 \n");
-    getch();
-    return 0;
+    int a[100][100];
+    int i,j, rows, columns;
+    printf("Enter Number of rows ");
+    scanf("%d", &rows);
+    printf("Enter Number of cloumns ");
+    scanf("%d", &columns);
+    printf("Enter values ");
+    for(i=0; i<rows; i++)
+    {
+        for(j=0; j<columns; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    printf("The matrix is \n");
+    for(i=0; i<rows; i++)
+    {
+        for(j=0; j<columns; j++)
+        {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
 }

@@ -1,19 +1,17 @@
 #include<stdio.h>
-
-int main ()
+#include<conio.h>
+void main()
 {
-    int p,n;
-    float r, si;
-    r = 8.5;
-    printf("Enter Principal Amount ");
-    scanf("%d",&p);
-    printf("\n Enter Time Period ");
-    scanf("%d", &n);
-    printf("\n Enter Interest rate ");
-    scanf("%f", &r);
-
-    si = p*n*r/100;
-
-    printf("%f", si);
-    return 0;
+    int i,k;
+    float fact,sum =0;
+    for(i=1;i<=7;i++)
+    {
+        fact =1;
+        for(k=i; k>0; k--)
+        {
+            fact *= k;
+        }
+        sum = sum + i/fact;
+    }
+    printf("Sum of the terms is: %f",sum);
 }

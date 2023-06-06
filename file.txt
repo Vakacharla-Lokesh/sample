@@ -1,0 +1,274 @@
+>> TO FIND FREQUENCY OF VOWELS IN A SENTENCE:
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+    char ch[1000];
+    int vowcount =0, conscount = 0, repeat = 0;
+    printf("Enter any sentence: ");
+    gets(ch);
+    strlwr(ch);
+    for(int i =0; i<strlen(ch); i++)
+    {
+        if(ch[i] == 'a' || ch[i] == 'e' || ch[i] == 'i' || ch[i] == 'o' || ch[i] == 'u')
+        {
+            vowcount = 0;
+            for(int j = i; j< strlen(ch); j++)
+            {
+                repeat = 0;
+                for(int k = i-1; k>=0; k--)
+                {
+                    if(ch[i] == ch [k])
+                    {
+                        repeat = 1;
+                        break;
+                    }
+                }
+                if (ch[i] == ch[j] && repeat == 0)
+                {
+                    vowcount++;
+                }
+            }
+            printf("The frequency of %c is: %d\n", ch[i], vowcount);
+        }
+    }
+}
+
+>> TO RETURN MAXIMUM OCCURING LETTER IN A STRING AND ITS FREQUENCY
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+    char str[100], maxchar;
+    int maxfreq = 0, freq = 0;
+    printf("Enter the string: ");
+    gets(str);
+    strlwr(str);
+    for(int i =0; i<strlen(str); i++)
+    {
+        freq = 0;
+        for (int j = i; j<strlen(str); j++)
+        {
+            if (str[i] == str[j])
+            {
+                freq++;
+            }
+        }
+        if(freq> maxfreq)
+        {
+            maxchar = str[i];
+            maxfreq = freq;
+        }
+    }
+    printf("The maximum frequency of %c is: %d", maxchar, maxfreq);
+}
+
+>> TO PRINT OUT THE CONTENTS FROM ANOTHER FILE
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void main()
+{
+    FILE *fp;
+    char ch;
+    fp = fopen("new.c","r");
+    while ( 1 ) 
+    { 
+        ch = fgetc ( fp ) ; 
+        if ( ch == EOF ) 
+        {
+            break ;
+        }
+        printf ( "%c", ch ) ; 
+    }
+    fclose(fp);
+}
+
+>> TO FIND SECOND LARGEST NUMBER IN AN ARRAY
+#include<stdio.h>
+void main()
+{
+    int arr[100], firstmax, secondmax, n;
+    printf("Enter number of elements in array: ");
+    scanf("%d", &n);
+    printf("Enter the elements of the array: ");
+    for (int i =0; i<n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    firstmax = arr[0];
+    for (int i = 0; i<n; i++)
+    {
+        if(arr[i] > firstmax)
+        {
+            secondmax = firstmax;
+            firstmax = arr[i];
+        }
+        else if (arr[i] > secondmax && arr[i] != firstmax)
+        {
+            secondmax = arr[i];
+        }
+        printf("%d %d %d\n",i,firstmax,secondmax);
+    }
+    printf("The second highest number in the array: %d", secondmax);
+}
+
+>> TO CHECK FOR A PALINDROME USING STRING FUNCTIONS
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+    char str[100], palin[100];
+    printf("Enter a string: ");
+    gets(str);
+    strcpy(palin, strrev(str));
+    if(strcmp(str, palin) == 0)
+    {
+        printf("Given string is a palindrome.");
+    }
+    else
+    {
+        printf("It is not a palindrome.");
+    }
+}
+
+>> TO CHECK FOR A PALINDROME WITHOUT USING STRING FUNCTIONS
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+    char str[100], palin[100];
+    int len = 0;
+    printf("Enter a string: ");
+    gets(str);
+    for(int i = 0; str[i] != '\0'; i++)
+    {
+        len++;
+    }
+    int j;
+    for (int i =0,j = len; i< len, j>=0; i++, j--)
+    {
+        palin[j] = str[i];
+    }
+    int count = 0;
+    for(int i = 0; i< len; i++)
+    {
+        if(palin[i] = str[i])
+        {
+            count ++;
+        }
+        else
+        {
+            count --;
+        }
+    }
+    if(count = len)
+    {
+        printf("The given string is a palindrome.");
+    }
+    else
+    {
+        printf("It is not a palindrome");
+    }
+}
+
+>>SUM OF DIGITS USING RECURSION
+#include<stdio.h>
+
+int Sumofdigits(int a)
+{
+    if (a != 0)
+    {
+        return ( a%10 + Sumofdigits(a/10));
+    }
+    else
+        return 0;
+}
+void main()
+{
+    int numb, sum;
+    printf("Enter a number: ");
+    scanf("%d", &numb);
+    sum = Sumofdigits(numb);
+    printf("The sum of the digits is: %d", sum);
+}
+
+>>TO RETURN THE POSITION OF THE ELEMENT IN AN ARRAY
+#include<stdio.h>
+void main()
+{
+    int arr[10], elem, position = 1;
+    printf("Enter the elemnts of the array: ");
+    for(int i = 0; i<10; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    printf("Enter the element whose position you require: ");
+    scanf("%d", &elem);
+    for(int i = 0; elem != arr[i]; i++)
+    {
+        position++;
+    }
+    printf("Position of the element is: %d", position);
+}
+
+>> FIBONACCI SERIES USING RECURSION#include<stdio.h>
+int isFibonacci(int n)
+{
+    static int n1 = 0, n2 =1, n3;
+    if(n>0)
+    {
+        n3 = n1 + n2;
+        n1 = n2;
+        n2 = n3;
+        printf("%d\t", n3);
+        isFibonacci(n-1);
+    }
+}
+void main()
+{
+    int n;
+    n = 10;
+    printf("0\t1\t");
+    isFibonacci(n-2);   
+}
+
+>> TO FIND THE SUM OF ROWS AND COLUMNS OF A 2-D MATRIX
+#include<stdio.h>
+void main()
+{
+    int rows, columns;
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter number of columns: ");
+    scanf("%d", &columns);
+    int arr[rows][columns], rowsum[rows], colsum[columns];
+    for (int i =0; i< rows; i++)
+    {
+        rowsum[i] = 0;
+        printf("Enter elements of row %d\n", i+1);
+        for (int j = 0; j<columns; j++)
+        {
+            scanf("%d",&arr[i][j]);
+            rowsum[i] += arr[i][j];
+        }
+    }
+    for (int j = 0; j<columns; j++)
+    {
+        colsum[j] = 0;
+        for (int i = 0; i < rows; i++)
+        {
+            colsum[j] += arr[i][j];
+        }
+    }
+    for (int i =0; i< rows; i++)
+    {
+        printf("The sum of row %d is: %d\n", i+1, rowsum[i]);
+    }
+    for (int j = 0; j<columns; j++)
+    {
+        printf("The sum of column %d is: %d\n", j+1, colsum[j]);
+    }
+}
+
+>>
